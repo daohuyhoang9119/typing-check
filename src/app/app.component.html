@@ -2,16 +2,19 @@
   <form class="card">
     <h1 class="title card-header">Typing Challenge</h1>
     <div class="card-content">
-      <p class="content block">{{random_Text}}</p>
+      <p class="content block">
+        <span [class]="compare(char,enterText[i])"
+          *ngFor="let char of random_Text.split('');let i=index">{{char}}</span>
+      </p>
     </div>
-    <input class="card-footer input is-link input-text" type="text" #txt (keyup)="checkTyping(txt.value)"
+    <input class="card-footer input is-link input-text" type="text" (input)="onInput($event.target)"
       placeholder="Write correct text above">
     <div class="message noti">
-      <article>
-        <div class="message-header">
-          <p>Success</p>
-        </div>
-      </article>
+
+      <div class="message-header" *ngIf="enterText== random_Text">
+        <p>Success</p>
+      </div>
+
     </div>
   </form>
 </div>
